@@ -99,8 +99,6 @@ const FormScreen = () => {
               id="w3review"
               name="w3review"
               placeholder="What's your motivation?"
-              //   rows="4"
-              //   cols="50"
               onChange={(e) => setMessage(e.target.value)}
             />
           </div>

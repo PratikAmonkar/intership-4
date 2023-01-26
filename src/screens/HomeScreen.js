@@ -2,54 +2,50 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const HomeScreen = () => {
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState([]);
+  console.log(formData);
 
   const data = async () => {
-    const res = await fetch("http://localhost:5000/api", {
-      method: "GET",
-    })
+    // const data = await fetch(
+    //   "https://api.openweathermap.org/data/2.5/weather?lat=15.600227&lon=73.812500&appid=8d8e6390b29f36ded700bc09e7aa0fd6"
+    // );
 
-    console.log(res);
+    await fetch("https://api.openweathermap.org/data/2.5/weather?lat=15.600227&lon=73.812500&appid=8d8e6390b29f36ded700bc09e7aa0fd6")
+      .then((res) => res.json())
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
+
+    // const url = "https://v3.football.api-sports.io/";
+
+    // const options = {
+    //   method: "GET",
+    //   headers: {
+    //     "X-RapidAPI-Key": "0cfae8328376160b5333faa136724f16",
+    //     "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+    //   },
+    // };
+
+    // fetch(url, options)
+    //   .then((res) => res.json())
+    //   .then((json) => console.log(json))
+    //   .catch((err) => console.error("error:" + err));
+    // const options = {
+    //   method: 'GET',
+    //   headers: {
+    //     'X-RapidAPI-Key': '3233da43c117a4b45115b025e7a5e512',
+    //     'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+    //   }
+    // };
+
+    // fetch('https://v3.football.api-sports.io/leagues/', options)
+    //   .then(response => response.json())
+    //   .then(res => console.log(res.response))
+    //   .catch(err => console.error(err));
   };
 
   useEffect(() => {
     data();
   }, []);
-
-  //   const onbj = [
-  //     {
-  //       id: 1,
-  //       firstname: "fdfsd",
-  //       lastname: "fsdfsdfds",
-  //       email: "fdfsdfsd",
-  //       dob: "Fsdfsdf",
-  //       message: "Fdfsf",
-  //     },
-  //     {
-  //       id: 2,
-  //       firstname: "fdfsd",
-  //       lastname: "fsdfsdfds",
-  //       email: "fdfsdfsd",
-  //       dob: "Fsdfsdf",
-  //       message: "Fdfsf",
-  //     },
-  //     {
-  //       id: 3,
-  //       firstname: "fdfsd",
-  //       lastname: "fsdfsdfds",
-  //       email: "fdfsdfsd",
-  //       dob: "Fsdfsdf",
-  //       message: "Fdfsf",
-  //     },
-  //     {
-  //       id: 4,
-  //       firstname: "fdfsd",
-  //       lastname: "fsdfsdfds",
-  //       email: "fdfsdfsd",
-  //       dob: "Fsdfsdf",
-  //       message: "Fdfsf",
-  //     },
-  //   ];
   return (
     <>
       <div className="home_section">
@@ -69,7 +65,7 @@ const HomeScreen = () => {
             <h4>D.O.B</h4>
             <h4>Message</h4>
           </div>
-          {/* {onbj.map((res) => {
+          {formData.map((res) => {
             return (
               <div
                 className="inner_sections"
@@ -88,7 +84,7 @@ const HomeScreen = () => {
                 <h6>{res.message}</h6>
               </div>
             );
-          })} */}
+          })}
         </div>
       </div>
     </>
