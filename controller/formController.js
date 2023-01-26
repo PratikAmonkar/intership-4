@@ -2,7 +2,6 @@ const conn = require("../database/config");
 const short = require("short-uuid");
 
 exports.getForm = (req, res) => {
-  // const demo = [];
   conn.query("select * from userinfo", function (error, results) {
     if (error) {
       throw error;
@@ -37,7 +36,7 @@ exports.uploadForm = (req, res) => {
         if (error) {
           console.log(error);
         }
-        res.send("User registed!!");
+        res.send("form added");
       }
     );
   } else {
